@@ -52,19 +52,19 @@ export interface PokerStoreState {
 }
 
 const DEFAULT_CONFIG: TableConfig = {
-  smallBlind: 10,
-  bigBlind: 20,
+  smallBlind: 1000,
+  bigBlind: 2000,
   ante: 0,
-  minRaiseAmount: 20,
+  minRaiseAmount: 2000,
 };
 
 const DEFAULT_PLAYERS_RAW = [
-  { name: "Player 1", stack: 1000 },
-  { name: "Player 2", stack: 1000 },
-  { name: "Player 3", stack: 1000 },
-  { name: "Player 4", stack: 1000 },
-  { name: "Player 5", stack: 1000 },
-  { name: "Player 6", stack: 1000 },
+  { name: "Player 1", stack: 100000 },
+  { name: "Player 2", stack: 100000 },
+  { name: "Player 3", stack: 100000 },
+  { name: "Player 4", stack: 100000 },
+  { name: "Player 5", stack: 100000 },
+  { name: "Player 6", stack: 100000 },
 ];
 
 function assignPositions(playersCount: number, dealerIdx: number): PlayerPosition[] {

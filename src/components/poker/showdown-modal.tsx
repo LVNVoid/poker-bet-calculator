@@ -93,7 +93,7 @@ export function ShowdownModal({
                   <span className="font-bold text-sm text-primary">{pot.name}</span>
                 </div>
                 <Badge variant="gold" size="md" className="font-black tabular-nums">
-                  {formatChips(pot.amount)} Chips
+                  {formatChips(pot.amount)}
                 </Badge>
               </div>
 
@@ -143,7 +143,7 @@ export function ShowdownModal({
             onClick={handleConfirm}
             className="flex-1 max-w-xs font-black shadow-lg"
           >
-            Selesaikan & Bagikan Chips
+            Selesaikan & Bagikan Pot
           </Button>
         </div>
       </div>

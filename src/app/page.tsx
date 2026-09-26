@@ -67,21 +67,21 @@ export default function PokerCalculatorPage() {
   }, [currentStreet, pots.length]);
 
   return (
-    <main className="h-screen max-h-screen overflow-hidden bg-canvas text-primary flex flex-col justify-between p-2 sm:p-3 select-none">
+    <main className="min-h-[100dvh] h-[100dvh] max-h-[100dvh] overflow-hidden bg-canvas text-primary flex flex-col justify-between p-1.5 sm:p-2.5 md:p-4 select-none">
       {/* Top Header Bar */}
-      <header className="shrink-0 w-full max-w-5xl mx-auto flex items-center justify-between gap-2 pb-2 border-b border-border/60">
-        <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl bg-gold/10 border border-gold/40 flex items-center justify-center text-gold shadow-sm">
-            <Spade className="w-5 h-5 fill-current" />
+      <header className="shrink-0 w-full max-w-5xl mx-auto flex items-center justify-between gap-1.5 sm:gap-2 pb-1.5 sm:pb-2 border-b border-border/60">
+        <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
+          <div className="w-7 h-7 sm:w-9 sm:h-9 shrink-0 rounded-lg sm:rounded-xl bg-gold/10 border border-gold/40 flex items-center justify-center text-gold shadow-sm">
+            <Spade className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
           </div>
-          <div>
-            <h1 className="text-sm sm:text-base font-extrabold tracking-tight text-primary flex items-center gap-2">
-              <span>Hold&apos;em Bet &amp; Pot Calculator</span>
-              <Badge variant="gold" size="sm" className="hidden sm:inline-flex">
+          <div className="min-w-0">
+            <h1 className="text-xs sm:text-sm md:text-base font-extrabold tracking-tight text-primary flex items-center gap-1.5 truncate">
+              <span className="truncate">Hold&apos;em Bet &amp; Pot</span>
+              <Badge variant="gold" size="sm" className="hidden xs:inline-flex text-[9px] sm:text-[10px] py-0 px-1.5 shrink-0">
                 Hand #{handNumber}
               </Badge>
             </h1>
-            <p className="text-[11px] text-secondary">
+            <p className="text-[10px] sm:text-[11px] text-secondary truncate">
               Blinds: {formatChips(config.smallBlind)} / {formatChips(config.bigBlind)}
               {config.ante > 0 && ` (Ante: ${formatChips(config.ante)})`}
             </p>
@@ -89,30 +89,30 @@ export default function PokerCalculatorPage() {
         </div>
 
         {/* Header Controls */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
           {/* View Toggle */}
-          <div className="flex items-center p-1 rounded-xl bg-surface-muted/60 border border-border">
+          <div className="flex items-center p-0.5 sm:p-1 rounded-lg sm:rounded-xl bg-surface-muted/60 border border-border">
             <button
               onClick={() => setViewMode("table")}
-              className={`p-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`p-1 sm:p-1.5 rounded-md sm:rounded-lg text-xs font-bold transition-all ${
                 viewMode === "table"
                   ? "bg-surface text-gold shadow-sm"
                   : "text-muted hover:text-primary"
               }`}
               title="Table Felt View"
             >
-              <CircleDot className="w-4 h-4" />
+              <CircleDot className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
             <button
               onClick={() => setViewMode("list")}
-              className={`p-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`p-1 sm:p-1.5 rounded-md sm:rounded-lg text-xs font-bold transition-all ${
                 viewMode === "list"
                   ? "bg-surface text-gold shadow-sm"
                   : "text-muted hover:text-primary"
               }`}
               title="List View"
             >
-              <LayoutGrid className="w-4 h-4" />
+              <LayoutGrid className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
           </div>
 
@@ -120,10 +120,10 @@ export default function PokerCalculatorPage() {
             variant="outline"
             size="sm"
             onClick={() => setShowLogDrawer(!showLogDrawer)}
-            className="gap-1 px-2.5 text-xs"
+            className="gap-1 px-2 sm:px-2.5 h-7 sm:h-8 text-[11px] sm:text-xs"
             title="Riwayat Aksi"
           >
-            <History className="w-3.5 h-3.5" />
+            <History className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             <span className="hidden md:inline">Log</span>
           </Button>
 
@@ -131,10 +131,10 @@ export default function PokerCalculatorPage() {
             variant="outline"
             size="sm"
             onClick={() => setIsSettingsOpen(true)}
-            className="gap-1 px-2.5 text-xs"
+            className="gap-1 px-2 sm:px-2.5 h-7 sm:h-8 text-[11px] sm:text-xs"
             title="Pengaturan Meja"
           >
-            <Sliders className="w-3.5 h-3.5" />
+            <Sliders className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             <span className="hidden md:inline">Setting</span>
           </Button>
 
@@ -142,10 +142,10 @@ export default function PokerCalculatorPage() {
             variant="ghost"
             size="icon"
             onClick={resetTable}
-            className="text-muted hover:text-crimson"
+            className="w-7 h-7 sm:w-8 sm:h-8 text-muted hover:text-crimson"
             title="Reset Meja"
           >
-            <RotateCcw className="w-4 h-4" />
+            <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           </Button>
         </div>
       </header>
@@ -191,7 +191,7 @@ export default function PokerCalculatorPage() {
 
       {/* Activity Log Drawer */}
       {showLogDrawer && (
-        <aside className="fixed top-16 right-4 z-40 w-72 max-h-[70vh] bg-surface border border-border rounded-2xl shadow-2xl p-4 flex flex-col overflow-hidden animate-fade-in">
+        <aside className="fixed top-12 sm:top-14 right-2 sm:right-4 z-40 w-[calc(100vw-1rem)] max-w-xs max-h-[70vh] bg-surface border border-border rounded-2xl shadow-2xl p-3 sm:p-4 flex flex-col overflow-hidden animate-fade-in">
           <div className="flex items-center justify-between pb-2 border-b border-border">
             <h3 className="text-xs font-bold uppercase tracking-wider text-secondary">
               Riwayat Aksi Hand #{handNumber}

@@ -10,8 +10,8 @@ describe("usePokerStore", () => {
   it("should initialize default table with 6 players and 10/20 blinds", () => {
     const state = usePokerStore.getState();
     assert.equal(state.players.length, 6);
-    assert.equal(state.config.smallBlind, 10);
-    assert.equal(state.config.bigBlind, 20);
+    assert.equal(state.config.smallBlind, 1000);
+    assert.equal(state.config.bigBlind, 2000);
     assert.equal(state.isHandInProgress, false);
   });
 
@@ -22,9 +22,9 @@ describe("usePokerStore", () => {
     const state = usePokerStore.getState();
     assert.equal(state.isHandInProgress, true);
     assert.equal(state.currentStreet, "preflop");
-    assert.equal(state.totalPot, 30); // 10 SB + 20 BB
+    assert.equal(state.totalPot, 3000); // 1000 SB + 2000 BB
     assert.equal(state.pots.length, 1);
-    assert.equal(state.pots[0].amount, 30);
+    assert.equal(state.pots[0].amount, 3000);
   });
 
   it("should support undoing player actions", () => {

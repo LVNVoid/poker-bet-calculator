@@ -31,8 +31,8 @@ export function PlayerSeat({
     >
       {/* Current Round Bet Floating Chip Tag (Placed toward center) */}
       {player.currentRoundBet > 0 && (
-        <div className="absolute -top-6 sm:-top-7 z-20 flex items-center gap-1 px-2 py-0.5 rounded-full bg-gold text-canvas border border-gold-glow shadow-md text-[10px] sm:text-xs font-black tabular-nums animate-bounce-short">
-          <Coins className="w-3 h-3 fill-current" />
+        <div className="absolute -top-5 sm:-top-6 z-20 flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.2 sm:py-0.5 rounded-full bg-gold text-canvas border border-gold-glow shadow-md text-[8px] sm:text-[11px] font-black tabular-nums animate-bounce-short whitespace-nowrap">
+          <Coins className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-current shrink-0" />
           <span>{formatChips(player.currentRoundBet)}</span>
         </div>
       )}
@@ -40,9 +40,9 @@ export function PlayerSeat({
       {/* Main Seat Card */}
       <div
         className={cn(
-          "relative flex flex-col items-center p-1.5 sm:p-2 rounded-xl border min-w-[76px] sm:min-w-[96px] shadow-lg backdrop-blur-md transition-all",
+          "relative flex flex-col items-center p-1 sm:p-2 rounded-lg sm:rounded-xl border min-w-[62px] xs:min-w-[72px] sm:min-w-[94px] shadow-lg backdrop-blur-md transition-all",
           isCurrentTurn
-            ? "bg-surface border-gold ring-2 ring-gold/60 shadow-[0_0_15px_rgba(234,179,8,0.35)] scale-105"
+            ? "bg-surface border-gold ring-1 sm:ring-2 ring-gold/60 shadow-[0_0_15px_rgba(234,179,8,0.35)] scale-105"
             : "bg-surface/90 border-border hover:border-gold/30",
           isAllIn && "border-purple ring-1 ring-purple/50"
         )}
@@ -50,7 +50,7 @@ export function PlayerSeat({
         {/* Dealer Button Chip */}
         {isDealer && (
           <div
-            className="absolute -top-2 -left-2 z-30 w-5 h-5 rounded-full bg-gold text-canvas border border-canvas font-black text-[9px] flex items-center justify-center shadow-md"
+            className="absolute -top-1.5 -left-1.5 sm:-top-2 sm:-left-2 z-30 w-3.5 h-3.5 sm:w-5 sm:h-5 rounded-full bg-gold text-canvas border border-canvas font-black text-[7px] sm:text-[9px] flex items-center justify-center shadow-md shrink-0"
             title="Dealer Button (BTN)"
           >
             D
@@ -59,31 +59,31 @@ export function PlayerSeat({
 
         {/* Turn Active Pulsing Dot */}
         {isCurrentTurn && (
-          <div className="absolute -top-1.5 -right-1.5 w-3 h-3 rounded-full bg-gold animate-ping" />
+          <div className="absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-gold animate-ping" />
         )}
 
         {/* Player Name & Role */}
-        <div className="w-full flex items-center justify-between gap-1 text-[10px] sm:text-[11px] mb-0.5">
-          <span className="font-extrabold text-primary truncate max-w-[55px] sm:max-w-[65px]">
+        <div className="w-full flex items-center justify-between gap-0.5 text-[8px] xs:text-[9px] sm:text-[11px] mb-0.5">
+          <span className="font-extrabold text-primary truncate max-w-[40px] xs:max-w-[48px] sm:max-w-[65px]">
             {player.name}
           </span>
-          <span className="text-[9px] font-bold text-secondary uppercase">
+          <span className="text-[7px] xs:text-[8px] sm:text-[9px] font-bold text-secondary uppercase shrink-0">
             {player.position}
           </span>
         </div>
 
         {/* Remaining Chip Stack */}
-        <div className="w-full flex items-center justify-center gap-1 font-mono font-black text-xs sm:text-sm text-gold tabular-nums">
+        <div className="w-full flex items-center justify-center font-mono font-black text-[10px] xs:text-xs sm:text-sm text-gold tabular-nums whitespace-nowrap">
           <span>{formatChips(player.stack)}</span>
         </div>
 
         {/* Status Tag (Folded / All-in) */}
         {isFolded ? (
-          <Badge variant="crimson" size="sm" className="mt-1 text-[8px] py-0 px-1">
+          <Badge variant="crimson" size="sm" className="mt-0.5 text-[7px] sm:text-[8px] py-0 px-1">
             FOLD
           </Badge>
         ) : isAllIn ? (
-          <Badge variant="purple" size="sm" className="mt-1 text-[8px] py-0 px-1">
+          <Badge variant="purple" size="sm" className="mt-0.5 text-[7px] sm:text-[8px] py-0 px-1">
             ALL-IN
           </Badge>
         ) : null}

@@ -1,16 +1,25 @@
 /**
- * Formats chip amounts into clean localized strings with thousand separators (1,000).
- * Includes optional compact formatting (e.g. 1500 -> 1.5K).
+ * Formats chip amounts into clean Indonesian Rupiah localized strings (e.g. Rp 1.000, Rp 20.000).
+ * Includes optional compact formatting (e.g. 1500000 -> Rp 1,5 jt).
  */
 export function formatChips(amount: number, compact: boolean = false): string {
-  if (isNaN(amount) || amount === 0) return "0";
+  if (isNaN(amount) || amount === 0) return "Rp 0";
 
-  if (compact && Math.abs(amount) >= 1000) {
-    if (Math.abs(amount) >= 1_000_000) {
-      return (amount / 1_000_000).toFixed(1).replace(/\.0$/, "") + "M";
+  const isNegative = amount < 0;
+  const absAmount = Math.abs(amount);
+
+  if (compact && absAmount >= 1_000) {
+    let formattedCompact = "";
+    if (absAmount >= 1_000_000_000) {
+      formattedCompact = (absAmount / 1_000_000_000).toFixed(1).replace(/\.0$/, "").replace(".", ",") + " M";
+    } else if (absAmount >= 1_000_000) {
+      formattedCompact = (absAmount / 1_000_000).toFixed(1).replace(/\.0$/, "").replace(".", ",") + " jt";
+    } else {
+      formattedCompact = (absAmount / 1_000).toFixed(1).replace(/\.0$/, "").replace(".", ",") + " rb";
     }
-    return (amount / 1_000).toFixed(1).replace(/\.0$/, "") + "K";
+    return `${isNegative ? "-" : ""}Rp ${formattedCompact}`;
   }
 
-  return new Intl.NumberFormat("en-US").format(amount);
+  const formatted = new Intl.NumberFormat("id-ID").format(absAmount);
+  return `${isNegative ? "-" : ""}Rp ${formatted}`;
 }

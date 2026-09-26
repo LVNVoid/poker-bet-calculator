@@ -77,19 +77,19 @@ export function TableSettingsModal({
         {/* Blinds & Ante Config */}
         <div className="grid grid-cols-3 gap-3">
           <Input
-            label="Small Blind"
+            label="Small Blind (Rp)"
             type="number"
             value={sb}
             onChange={(e) => setSb(Number(e.target.value))}
           />
           <Input
-            label="Big Blind"
+            label="Big Blind (Rp)"
             type="number"
             value={bb}
             onChange={(e) => setBb(Number(e.target.value))}
           />
           <Input
-            label="Ante (Opsional)"
+            label="Ante (Rp)"
             type="number"
             value={ante}
             onChange={(e) => setAnte(Number(e.target.value))}
@@ -133,7 +133,7 @@ export function TableSettingsModal({
                   value={player.stack}
                   onChange={(e) => handlePlayerChange(idx, "stack", e.target.value)}
                   className="w-24 h-9 px-2 text-xs bg-surface border border-border rounded-lg text-primary tabular-nums text-right"
-                  placeholder="Chips"
+                  placeholder="Stack (Rp)"
                 />
                 {playerList.length > 2 && (
                   <button
